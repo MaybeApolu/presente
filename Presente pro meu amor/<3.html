@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #ffe6ec, #fff);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+    }
+
+    .carousel {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: brightness(0.8);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .overlay p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #e91e63;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    #contador {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #444;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 0;
+      color: #e91e63;
+      font-size: 1.5rem;
+      animation: subir 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #fff0f5;
+      color: #777;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="carousel" id="carousel">
+      <img src="/home/paulo/projetos/Presente pro meu amor/static/1.png" alt="foto1">
+      <img src="/home/paulo/projetos/Presente pro meu amor/static/2.png" alt="foto2">
+      <img src="/home/paulo/projetos/Presente pro meu amor/static/3.png" alt="foto3">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/4.png" alt="foto4">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/5.png" alt="foto5">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/6.png" alt="foto6">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/7.png" alt="foto7">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/8.png" alt="foto8">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/9.png" alt="foto9">
+<img src="/home/paulo/projetos/Presente pro meu amor/static/10.png" alt="foto10">
+    </div>
+    <div class="overlay">
+      <h1>Amor.</h1>
+      <p>A sensação que me lembra de cada momento com você ✨</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Nossa História</h2>
+    <p>
+      No dia 12 de Maio de 2022, nos conhecemos, e a partir desse dia, minha vida mudou pra sempre. Durante um jogo de Jenga, vi o quanto vc é incrível, e mesmo conversando pouco, tivemos uma química incrível. Logo depois disso, nos tornamos muito amigos, e a cada call longa que passávamos, eu ficava cada vez mais fascinado com vc, fazendo com que eu mesmo me tornasse secretamente apaixonado por vc. No dia 29 de Outubro de 2022, eu te entreguei o seu anel, oficializando nosso namoro e tornando você a mulher da minha vida, e a cada dia, você me deixa mais e mais feliz e apaixonado por vc. EU TE AMO💞
+    </p>
+
+    <div id="contador"></div>
+  </section>
+
+  <section>
+    <h2>Mensagem Para Você</h2>
+    <p id="mensagem"></p>
+  </section>
+
+  <footer>
+    Feito com amor por Paulo 💘
+  </footer>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    // Carrossel automático
+    const carousel = document.getElementById("carousel");
+    let index = 0;
+    const total = carousel.children.length;
+
+    setInterval(() => {
+      index = (index + 1) % total;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+
+    // Função para calcular anos, meses e dias juntos
+    function calcularTempo() {
+      const dataInicio = new Date(2022, 9, 29); // Mês 9 = outubro (0 index)
+      const hoje = new Date();
+
+      let anos = hoje.getFullYear() - dataInicio.getFullYear();
+      let meses = hoje.getMonth() - dataInicio.getMonth();
+      let dias = hoje.getDate() - dataInicio.getDate();
+
+      if (dias < 0) {
+        meses--;
+        const ultimoMes = new Date(hoje.getFullYear(), hoje.getMonth(), 0).getDate();
+        dias += ultimoMes;
+      }
+
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      return { anos, meses, dias };
+    }
+
+    const tempo = calcularTempo();
+    const contador = document.getElementById("contador");
+    contador.textContent = `Você me faz feliz à ${tempo.anos} anos, ${tempo.meses} meses e ${tempo.dias} dias 💗`;
+
+    // Mensagem digitando
+    const mensagem = "Meu amor, eu te disse que não sabia fazer cartas, então por isso decidi fazer esse site pra você, espero que você aproveite muito bem o nosso querido dia, e que cada vez mais eu possa ficar com vc mais e mais. Espero que nós sejamos mais felizes a cada dia, mês e ano que se passa. Eu sei que não sou perfeito e erro muito com vc, mas me vejo cada dia mais pensando em como ser o melhor para ti, meu amor. Nunca fui de escrever textos, mas sei que, ao ver seus presentes me tornei uma pessoa triste por não conseguir retribuír, eu realmente gostaria de saber escrever e fazer uma cartinha linda, mas pra mim, o que eu consigo te dar é meu amor e essas linhas de código cheias de amor por ti. Aproveite seu dia, coma suas bolinhas de queijo e cheire bastante suas flores, eu te amo hoje, amanhã e sempre. ❤️";
+    let i = 0;
+    function digitar() {
+      if (i < mensagem.length) {
+        document.getElementById("mensagem").textContent += mensagem.charAt(i);
+        i++;
+        setTimeout(digitar, 30);
+      }
+    }
+    digitar();
+
+    // Corações flutuando
+    const heartsContainer = document.getElementById("hearts");
+    function criarCoracao() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+      heart.textContent = "❤";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(criarCoracao, 500);
+  </script>
+</body>
+</html>
+
